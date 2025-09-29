@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Case Details</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ case_data.case_number }}/{{ case_data.year }}</h5>
+                <p class="card-text"><strong>Party Name:</strong> {{ case_data.party_name }}</p>
+                <p class="card-text"><strong>Court:</strong> {{ case_data.court_name }}</p>
+                <p class="card-text"><strong>Date of Listing:</strong> {{ case_data.date_of_listing }}</p>
+                <p class="card-text"><strong>Status:</strong> {{ case_data.status }}</p>
+                <p class="card-text"><small class="text-muted">Scraped at: {{ case_data.scraped_at }}</small></p>
+                {% if case_data.note %}
+                    <div class="alert alert-info">{{ case_data.note }}</div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            <a href="/download_pdf/{{ query_id }}" class="btn btn-success">Download PDF</a>
+            <a href="/" class="btn btn-secondary">Back to Search</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

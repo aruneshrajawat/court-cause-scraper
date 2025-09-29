@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search History</h2>
+
+{% if queries %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Case Type</th>
+                    <th>Case Number</th>
+                    <th>Year</th>
+                    <th>Search Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for query in queries %}
+                <tr>
+                    <td>{{ query.id }}</td>
+                    <td>{{ query.case_type }}</td>
+                    <td>{{ query.case_number }}</td>
+                    <td>{{ query.year }}</td>
+                    <td>{{ query.created_at }}</td>
+                    <td>
+                        <a href="/download_pdf/{{ query.id }}" class="btn btn-sm btn-outline-primary">Download PDF</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p class="text-muted">No search history available</p>
+{% endif %}
+
+<a href="/" class="btn btn-secondary">Back to Search</a>
+{% endblock %}

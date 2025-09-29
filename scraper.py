@@ -144,5 +144,29 @@ def scrape():
     else:
         print("No data generated")
 
+def scrape_case_by_number(case_type, case_number, year):
+    """Search for specific case by number - returns sample data for MVP"""
+    try:
+        # For MVP, return sample case data
+        # In production, this would use Selenium to interact with court websites
+        sample_case = {
+            'case_type': case_type,
+            'case_number': case_number,
+            'year': year,
+            'party_name': f'Sample Party vs Another Party ({case_number})',
+            'date_of_listing': datetime.now().strftime('%d-%m-%Y'),
+            'court_name': 'High Court of Mumbai' if case_type == 'High Court' else 'District Court Mumbai',
+            'status': 'Listed for hearing',
+            'scraped_at': datetime.now().isoformat(),
+            'note': 'Sample data - actual scraping requires Selenium WebDriver'
+        }
+        
+        print(f"Generated sample data for case: {case_number}/{year}")
+        return sample_case
+        
+    except Exception as e:
+        print(f"Error in case search: {e}")
+        return None
+
 if __name__ == "__main__":
     scrape()
